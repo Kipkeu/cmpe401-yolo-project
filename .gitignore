@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.vscode/
+.env
+.venv/
+ECHO is on.
+# Data and models (keep repo lightweight
