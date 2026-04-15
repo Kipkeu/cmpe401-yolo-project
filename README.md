@@ -162,7 +162,7 @@ As a result:
 - **Precision is moderate (~0.42)** 
 - **Recall is low (~0.33)** indicating many small or occluded objects are missed  
 
-This leads to mild underfitting but *no overfitting*.
+This leads to underfitting but *no overfitting*.
 
 ---
 
@@ -293,7 +293,9 @@ This comparison highlights the trade‑offs between accuracy, model complexity, 
 
 ## Part VI – Final Baseline vs Final Model Comparison and Key Findings
 
-To ensure a fair and conclusive comparison, the baseline and final models were trained using identical settings, including dataset, input resolution, and number of epochs.
+To ensure a fair and conclusive comparison, the baseline and final models were trained using identical core settings, including dataset, input resolution, and number of epochs. The final YOLO11s model represents a synthesis of the most effective design choices identified through structured experimentation in Parts III–V, including increased model capacity, validated optimization practices, and empirically supported training strategies. This comparison therefore reflects both a controlled evaluation and an evidence‑driven final system selection, rather than an isolated experimental variant. Unlike earlier exploratory experiments, the final model is trained with a full optimization budget and integrates only those components shown to yield consistent performance gains.
+
+The final results are:
 
 | Model | Epochs | Params (M) | Precision | Recall | mAP50 | mAP50‑95 |
 |------|--------|------------|-----------|--------|--------|-----------|
@@ -302,7 +304,7 @@ To ensure a fair and conclusive comparison, the baseline and final models were t
 
 When trained with identical optimization budgets (50 epochs), the final YOLO11s model consistently outperforms the YOLO11n baseline across all primary detection metrics. The increase in **mAP50** (0.317 → 0.381) demonstrates substantially improved object coverage in dense scenes, while gains in **precision** (0.416 → 0.51) and **recall** (0.325 → 0.387) indicate more confident and complete detections. These improvements confirm that the baseline YOLO11n model was capacity‑limited on the VisDrone dataset and that increased representational power enables better feature learning under equal training conditions.
 
-The higher parameter count and computational cost of YOLO11s are accompanied by meaningful accuracy gains, particularly in detecting vehicles and other structured objects, as further supported by confusion‑matrix analysis. Although performance on small and visually overlapping classes remains challenging, the final model achieves a superior accuracy–capacity trade‑off and represents the best supported configuration identified in this project. This validates the progression from baseline analysis through controlled experimentation to final model selection.
+The higher parameter count and computational cost of YOLO11s are accompanied by meaningful accuracy gains, particularly in detecting vehicles and other structured objects, as further supported by confusion‑matrix analysis.
 
 
 ### Confusion Matrix Analysis (Baseline vs Final Model)
