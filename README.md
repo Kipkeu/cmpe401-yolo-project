@@ -260,23 +260,23 @@ This highlights that learning‑rate scheduling must be paired with sufficient t
 
 The cosine learning‑rate schedule did not yield performance gains for YOLO11s under limited epochs. This experiment demonstrates the importance of aligning optimization strategies with training duration and reinforces that default learning‑rate behavior was more effective in this context.
 
-# Part V – Multi‑Version YOLO Comparison
+## Part V – Multi‑Version YOLO Comparison
 
 This section compares multiple YOLO versions using zero‑shot evaluation on the VisDrone validation set. Models were evaluated using identical inference settings without fine‑tuning to isolate architectural differences across YOLO generations. 
 
-## Models Compared
+### Models Compared
 - YOLO11n
 - YOLOv8n
 - YOLOv5n
 - YOLOv9c
 
-## Evaluation Setup
+### Evaluation Setup
 - Dataset: VisDrone2019‑DET (validation split)
 - Image size: 640
 - Batch size: 8
 - No fine‑tuning performed
 
-## Results Summary
+### Results Summary
 All models below were evaluated on the **VisDrone validation set** using **COCO‑pretrained weights** without fine‑tuning. Metrics reflect **cross‑dataset generalization performance**.
 
 | Model     | Parameters (M) | Precision | Recall | mAP50 | mAP50‑95 | Total Evaluation Time (s) |
@@ -286,12 +286,12 @@ All models below were evaluated on the **VisDrone validation set** using **COCO�
 | YOLOv5n   | 2.65           | 0.057    | 0.052  | 0.015  | 0.007     | 21.73                    |
 | YOLOv9c   | 25.38          | 0.040    | 0.173  | 0.031  | 0.015     | 26.05                    |
 
-## Discussion
+### Discussion
 All evaluated models demonstrate low absolute accuracy due to domain mismatch between COCO training data and VisDrone images. However, relative trends are consistent: larger models such as YOLOv9c achieve higher recall and mAP at the cost of increased model size and runtime, while nano models favor speed over accuracy. YOLO11n achieves competitive performance among lightweight models, illustrating a balanced accuracy–efficiency trade‑off.
 
 This comparison highlights the trade‑offs between accuracy, model complexity, and evaluation speed across YOLO versions, reinforcing design choices made in earlier parts of the project.
 
-## Final Baseline vs Final Model Comparison
+## Part VI – Final Baseline vs Final Model Comparison and Key Findings
 
 To ensure a fair and conclusive comparison, the baseline and final models were trained using identical settings, including dataset, input resolution, and number of epochs.
 
@@ -307,11 +307,7 @@ The higher parameter count and computational cost of YOLO11s are accompanied by 
 
 ### Confusion Matrix Analysis (Baseline vs Final Model)
 
-- Misclassification into the **background class remains the dominant error source** in both models, particularly for small and densely packed objects.
-
-- The final YOLO11s model shows **improved diagonal dominance** in the confusion matrix, indicating better class-level separation.
-
-- Clear performance improvements are observed for **vehicle-related classes**, especially:
+Analysis of the baseline compared to the final model, misclassification into the **background class remains the dominant error source** in both models, particularly for small and densely packed objects. The final YOLO11s model shows **improved diagonal dominance** in the confusion matrix, indicating better class-level separation. Clear performance improvements are observed for **vehicle-related classes**, especially:
   - car  
   - van  
   - truck  
@@ -319,24 +315,20 @@ The higher parameter count and computational cost of YOLO11s are accompanied by 
 
   → These classes show higher correct classification rates and reduced cross-class confusion.
 
-- The baseline YOLO11n model exhibits more **diffuse misclassification patterns**, with predictions spread across multiple incorrect classes.
+The baseline YOLO11n model exhibits more **diffuse misclassification patterns**, with predictions spread across multiple incorrect classes. The final model shows **reduced background confusion**, suggesting improved feature extraction and stronger object localization.
 
-- The final model shows **reduced background confusion**, suggesting improved feature extraction and stronger object localization.
-
-- Performance remains weak for **small object categories**, including:
+Performance remains weak for **small object categories**, including:
   - pedestrian  
   - people  
   - bicycle  
   - tricycle  
   - awning-tricycle  
 
-- These classes continue to be frequently misclassified as:
+These classes continue to be frequently misclassified as:
   - background  
   - visually similar object categories  
 
-- The persistent errors suggest that **model scaling alone is insufficient** to fully resolve small-object detection challenges.
-
-- Overall, the confusion matrix confirms:
+The persistent errors suggest that **model scaling alone is insufficient** to fully resolve small-object detection challenges. Overall, the confusion matrix confirms:
   - improved class separability in YOLO11s  
   - stronger detection consistency for structured objects  
   - remaining limitations driven by object scale and dataset density
