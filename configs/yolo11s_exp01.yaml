@@ -1,0 +1,11 @@
+# Experiment 1 – YOLO11s model size comparison
+
+model: yolo11s.pt
+data: /content/drive/MyDrive/visdrone_dataset/visdrone.yaml
+
+epochs: 50
+imgsz: 640
+batch: 16
+
+project: /content/drive/MyDrive/visdrone_dataset/runs
+name: exp01_yolo11s
