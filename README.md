@@ -8,6 +8,48 @@ Overall, this project emphasizes principled experimentation and diagnostic analy
 
 *Some of the model experiments were run for fewer epochs due to computational constraints; however, trends were still clearly observable when compared to the fully converged baseline and also a fully model is presented at the end.*
 
+## Setup, Installation, and Reproducibility
+
+This project is built using the **Ultralytics YOLO framework** and is fully configuration-driven. All experiments can be reproduced without writing custom training code. Training was performed on **Google Colab GPUs**, but the setup also supports local execution.
+
+---
+
+### Requirements
+
+**Software**
+- Python ≥ 3.9
+- PyTorch ≥ 1.13
+- Ultralytics YOLO (YOLOv11 compatible)
+- NumPy
+- Pandas
+- Matplotlib
+- OpenCV
+
+**Hardware**
+- NVIDIA GPU with CUDA support is strongly recommended
+- CPU-only execution is supported for inference but not practical for training
+- Experiments were conducted on Google Colab (T4 / A100 GPUs)
+
+---
+
+### Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+pip install -r requirements.txt
+pip install ultralytics
+```
+
+Verify the installation and environment:
+
+```bash
+yolo checks
+```
+
+
 ## Repository Structure
 This repository is organized to clearly separate configuration, data handling, experimental results, and analysis. Only lightweight, reproducible artifacts are stored.
 
